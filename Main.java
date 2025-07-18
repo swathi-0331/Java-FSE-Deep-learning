@@ -1,39 +1,28 @@
-package ecommercePlatformSearchFunction;
 public class Main {
     public static void main(String[] args) {
-        Product[] products = {
-            new Product(101, "Phone", "Electronics"),
-            new Product(102, "Laptop", "Electronics"),
-            new Product(103, "Shoes", "Fashion"),
-            new Product(104, "Watch", "Accessories"),
-            new Product(105, "Bag", "Fashion")
+        Order[] orders = {
+            new Order(201, "Alice", 320.50),
+            new Order(202, "Bob", 150.00),
+            new Order(203, "Charlie", 800.00),
+            new Order(204, "David", 450.75),
+            new Order(205, "Eva", 200.00)
         };
 
-        int searchId = 103;
+        // Clone orders array for both algorithms
+        Order[] bubbleSortedOrders = orders.clone();
+        Order[] quickSortedOrders = orders.clone();
 
-        // Linear Search
-        Product linearResult = SearchAlgorithms.linearSearch(products, searchId);
-        System.out.println("🔍 Linear Search Result:");
-        if (linearResult != null) {
-            System.out.println(linearResult);
-        } else {
-            System.out.println("Product not found.");
-        }
+        System.out.println("Bubble Sort (by Total Price):");
+        SortAlgorithms.bubbleSort(bubbleSortedOrders);
+        SortAlgorithms.printOrders(bubbleSortedOrders);
 
-        // Binary Search
-        Product binaryResult = SearchAlgorithms.binarySearch(products, searchId);
-        System.out.println("\n🔍 Binary Search Result:");
-        if (binaryResult != null) {
-            System.out.println(binaryResult);
-        } else {
-            System.out.println("Product not found.");
-        }
+        System.out.println("\nQuick Sort (by Total Price):");
+        SortAlgorithms.quickSort(quickSortedOrders, 0, quickSortedOrders.length - 1);
+        SortAlgorithms.printOrders(quickSortedOrders);
 
-        // Analysis
-        System.out.println("\n📊 Time Complexity Analysis:");
-        System.out.println("Linear Search: O(n) - Checks each element one by one.");
-        System.out.println("Binary Search: O(log n) - Divides search space in half each step (requires sorted data).");
-
-        System.out.println("\n✅ Binary search is more efficient for large, sorted datasets.");
+        System.out.println("\nTime Complexity Analysis:");
+        System.out.println("Bubble Sort: O(n^2) - Slow on large datasets.");
+        System.out.println("Quick Sort: O(n log n) average - Fast and efficient.");
+        System.out.println("Quick Sort is generally preferred for better performance.");
     }
 }
